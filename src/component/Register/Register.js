@@ -5,13 +5,11 @@ import { AuthContext } from '../Context/AuthProvider';
 const Register = () => {
     const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext);
     const [error, setError] = useState('');
-   
-  
+
     const handleSubmit = event => {
       event.preventDefault();
       const form = event.target;
       const name = form.name.value;
-      const photoURL = form.photoURL.value;
       const email = form.email.value;
       const password = form.password.value;
       //  console.log(name, photoURL, email, password);
@@ -22,7 +20,7 @@ const Register = () => {
           console.log(user);
           setError('');
           form.reset();
-          handleUpdateUserProfile(name, photoURL);
+          handleUpdateUserProfile(name, email, password);
           handleEmailVerification();
           toast.success('Please verify your email before login')
         })
@@ -47,8 +45,6 @@ const Register = () => {
         .then(() => { })
         .catch(error => console.error(error));
     }
-  
-   
     return (
         <section class="bg-white font-poppins dark:bg-gray-900">
             <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">

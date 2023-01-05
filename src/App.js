@@ -8,6 +8,7 @@ import Main from './component/Layout/Main';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
 import Service from './component/Services/Service';
+import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
   ])
   return (
     <div className="App">
-    <RouterProvider router={router}></RouterProvider>
+    <RouterProvider fallbackElement={<Spinner></Spinner>} router={router}></RouterProvider>
     <Toaster></Toaster>
     </div>
   );
