@@ -71,7 +71,7 @@ const Login = () => {
 
                     <div class="mt-6">
                         <button class="w-full px-6 py-3 text-sm font-medium tracking-wide  capitalize transition-colors duration-300 transform bg-black rounded-lg hover:bg-gray-900 text-yellow-400 focus:outline-none focus:ring focus:bg-gray-700 focus:ring-opacity-50">
-                            Login in
+                            Log in
                         </button>
                         <p className='text-red-700 mt-7 mb-7'> {error}</p>
                         <p class="mt-4 text-center text-gray-600 dark:text-gray-400"> or login with Social Media</p>

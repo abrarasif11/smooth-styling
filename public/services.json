@@ -1,0 +1,19 @@
+
+[
+    {
+      "picture": "https://cdn0.iconfinder.com/data/icons/clothes-and-accessories-part-1/78/25-512.png",
+      "name": "Hair Cut",
+      "price": "100"
+    },
+    {
+      "picture": "https://cdn2.iconfinder.com/data/icons/hair-beauty-volume-1/500/beard_trim-512.png",
+      "name": "Beard Trim",
+      "price": "50"
+    },
+    {
+      "picture": "https://cdn2.iconfinder.com/data/icons/beauty-and-spa-2-4/65/84-512.png",
+      "name": "Hair Color",
+      "price": "200"
+    }
+    
+  ]

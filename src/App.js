@@ -3,11 +3,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import About from './component/About/About';
 import Appoinment from './component/Appoinment/Appoinment';
+import Categories from './component/Categories/Categories';
 import Home from './component/Home/Home';
 import Main from './component/Layout/Main';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
-import Service from './component/Services/Service';
 import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 
@@ -35,7 +35,8 @@ function App() {
         },
         {
           path : '/service',
-          element : <Service></Service>
+          element : <Categories></Categories>,
+          loader:() => fetch('http://localhost:5000/categories')
         },
         {
           path : '/register',
