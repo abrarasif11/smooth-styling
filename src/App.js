@@ -35,8 +35,8 @@ function App() {
         },
         {
           path : '/service',
-          element : <Categories></Categories>,
-          loader:() => fetch('http://localhost:5000/categories')
+          element : <Categories></Categories>
+          
         },
         {
           path : '/register',
