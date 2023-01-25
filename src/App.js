@@ -8,6 +8,8 @@ import Home from './component/Home/Home';
 import Main from './component/Layout/Main';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
+import ReLogin from './component/Register/ReLogin/ReLogin';
+import ReSignUp from './component/ReSignUp/ReSignUp';
 import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 
@@ -40,11 +42,11 @@ function App() {
         },
         {
           path : '/register',
-          element : <Register></Register>
+          element : <ReSignUp></ReSignUp>
         },
         {
           path : '/login',
-          element : <Login></Login>
+          element : <ReLogin></ReLogin>
         },
       ]
       

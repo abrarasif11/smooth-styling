@@ -1,20 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Category = ({ category }) => {
     const { picture, name, price } = category;
     console.log(category);
     return (
-        <div>
-            <div className="card font-poppins mb-10 w-96 bg-base-100 shadow-xl">
-                <figure className="px-10 pt-10">
-                    <img src={picture} alt="Shoes" className="rounded-xl" />
-                </figure>
-                <div className="card-body items-center text-center">
-                    <h2 className="card-title">{name}</h2>
-                    <p>Price : {price}Tk</p>
-                    <div className="card-actions">
-                    </div>
-                </div>
+        <div class="max-w-xs overflow-hidden font-poppins  rounded-lg shadow-lg bg-white">
+            <div class="px-4 py-2">
+                <h1 class="text-3xl font-bold text-black uppercase dark:text-white">{name}</h1>
+
+            </div>
+
+            <img class="object-cover w-[80]px h-48 mt-2" src={picture} alt="NIKE AIR" />
+
+            <div class="flex items-center justify-between px-4 py-2 bg-black">
+                <h1 class="text-lg font-bold text-white">Price : {price}TK</h1>
+                <Link to='/appointment'>
+                    <button class="px-2 py-1 text-xs font-semibold text-black uppercase transition-colors duration-300 transform bg-white rounded hover:bg-black hover:text-yellow-400 focus:outline-none">Appoint Now</button>
+                </Link>
             </div>
         </div>
     );
