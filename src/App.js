@@ -4,12 +4,10 @@ import './App.css';
 import About from './component/About/About';
 import Appoinment from './component/Appoinment/Appoinment';
 import Categories from './component/Categories/Categories';
+import ReLogin from './component/Register/ReLogin/ReLogin'
+import ReSignUp from './component/ReSignUp/ReSignUp'
 import Home from './component/Home/Home';
 import Main from './component/Layout/Main';
-import Login from './component/Login/Login';
-import Register from './component/Register/Register';
-import ReLogin from './component/Register/ReLogin/ReLogin';
-import ReSignUp from './component/ReSignUp/ReSignUp';
 import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 

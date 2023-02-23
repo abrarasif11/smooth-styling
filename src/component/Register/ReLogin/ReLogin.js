@@ -1,7 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const ReLogin = () => {
+  const [error, setError] = useState('');
+    const { signIn, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+    const provider = new GoogleAuthProvider();
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('');
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error('Your email is not valid, Please verify email first')
+                }
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message);
+            });
+    }
+  const handleGoogleSignIn = () => {
+    googleSignIn(provider)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+};
   return (
     <div className="relative">
       <img
@@ -25,43 +67,29 @@ const ReLogin = () => {
               
             </div>
             <div className="w-full font-poppins max-w-xl xl:px-8 xl:w-5/12">
-              <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
+              <div className="bg-gray-700 text-white rounded shadow-2xl p-7 sm:p-10">
 
-                <form>
+                <form onSubmit={handleSubmit}>
                   
                   <h3 className='text-4xl font-semibold mb-5'>Log In Here</h3>
                   <div className="mb-1  sm:mb-2">
                     <label
                       htmlFor="firstName"
-                      className="inline-block mr-[315px] mb-1 font-medium"
+                      className="inline-block mr-[315px] mb-2 font-medium"
                     >
                       Email
                     </label>
-                    <input
-                      placeholder="Enter your email"
-                      required
-                      type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      id="firstName"
-                      name="firstName"
-                    />
+                    <input type="email" id='email' class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                   </div>
 
                   <div className="mb-1 sm:mb-2">
                     <label
                       htmlFor="email"
-                      className="inline-block mr-[290px] mb-1 font-medium"
+                      className="inline-block mr-[290px] mb-2 font-medium"
                     >
                       Password
                     </label>
-                    <input
-                      placeholder="Enter your password"
-                      required
-                      type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      id="email"
-                      name="email"
-                    />
+                    <input type="password" id='password' class="block w-full px-5 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
                   </div>
                   <div className="mt-4 mb-2 sm:mb-4">
                     <button
@@ -71,8 +99,8 @@ const ReLogin = () => {
                       Log In
                     </button>
                     <br />
-                    <button className=' w-full'>
-                      <a href="#" class="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <button onClick={handleGoogleSignIn} className=' w-full'>
+                      <a href="#" class="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg dark:border-gray-700 hover:text-black hover:bg-gray-50 dark:hover:bg-gray-600">
                         <svg class="w-6 h-6 mx-2" viewBox="0 0 40 40">
                           <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
                           <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00" />
@@ -80,13 +108,14 @@ const ReLogin = () => {
                           <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#1976D2" />
                         </svg>
 
-                        <span class="mx-2">Sign in with Google</span>
+                        <span class="mx-2">Log in with Google</span>
                       </a>
                     </button>
+                    <p className='text-[#DC0000] mt-7 mb-7'> {error}</p>
                   </div>
                   <div class="mt-6 text-center ">
 
-                    Don’t have an account? <Link to='/register' className='hover:underline'> <span className='text-blue-600'> Sign Up</span></Link>
+                    Don’t have an account? <Link to='/register' className='hover:underline'> <span className='text-yellow-400'> Register</span></Link>
 
                   </div>
                 </form>
