@@ -1,11 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../Context/AuthProvider";
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
-  
-   
     const handleLogOut = () => {
       logOut(navigate);
     };
@@ -68,7 +66,7 @@ const Header = () => {
       <div className="navbar bg-black flex justify-between">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn text-yellow-400 btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"

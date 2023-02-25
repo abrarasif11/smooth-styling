@@ -5,7 +5,7 @@ const Category = ({ category }) => {
     const { picture, name, price } = category;
     console.log(category);
     return (
-        <div class="max-w-xs overflow-hidden font-poppins  rounded-lg shadow-lg bg-white">
+        <div class="max-w-xs overflow-hidden font-poppins hover:scale-105 transition-all duration-700 rounded-lg shadow-lg bg-white">
             <div class="px-4 py-2">
                 <h1 class="text-3xl font-bold text-black uppercase dark:text-white">{name}</h1>
 
