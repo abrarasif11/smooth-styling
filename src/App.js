@@ -10,6 +10,7 @@ import Home from './component/Home/Home';
 import Main from './component/Layout/Main';
 import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
+import GiveReview from './component/GiveReview/GiveReview';
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,7 @@ function App() {
         },
         {
           path : '/testimonial',
+          loader :() => fetch('http://localhost:5000/review'),
           element : <Testimonial></Testimonial>
         },
         {
@@ -37,6 +39,10 @@ function App() {
           path : '/service',
           element : <Categories></Categories>
           
+        },
+        {
+          path : '/reviews',
+          element : <GiveReview></GiveReview>
         },
         {
           path : '/register',

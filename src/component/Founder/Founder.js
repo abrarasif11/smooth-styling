@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Founder = () => {
     return (
@@ -9,7 +10,9 @@ const Founder = () => {
                     <div>
                         <h1 className="text-5xl font-poppins text-black font-bold">Message From Our Founder</h1>
                         <p className="text-black font-poppins py-6">Welcome to our barber shop! As the founder, I'm proud to say that our goal is to provide exceptional haircuts and grooming services that not only make you look good, but also make you feel good. Come in and experience the difference for yourself!</p>
+                        <Link to='/reviews'>
                         <button className="px-3 py-3 rounded font-poppins text-yellow-400 bg-black">Give FeedBack</button>
+                        </Link>
                     </div>
                 </div>
             </div>

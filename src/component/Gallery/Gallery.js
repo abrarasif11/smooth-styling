@@ -1,6 +1,8 @@
 import React from 'react';
 
+
 const Gallery = () => {
+   
     return (
         <div>
             <h1 className='mx-auto text-black text-5xl mt-20 font-poppins
