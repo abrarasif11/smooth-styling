@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthProvider';
 
 const GiveReview = () => {
-    const { user, } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const handleReviewSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -43,7 +43,8 @@ const GiveReview = () => {
 
                     </div>
                     <div className="flex flex-col w-full">
-                        <input defaultValue='' type="text" name="name" id="name" placeholder="Username" className="w-full px-4 mb-2 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
+                        
+                        <input defaultValue={user?.displayName} disabled type="text" name="name" id="name" placeholder="Username" className="w-full px-4 mb-2 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         <textarea name='reviews' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none text-black bg-gray-100"></textarea>
                         <button class=" w-full mt-3 mb-3 px-6 py-2.5 text-sm  tracking-wide text-black font-semibold capitalize transition-colors duration-300 transform bg-yellow-400 rounded-lg hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                             Submit

@@ -22,7 +22,8 @@ const Register = () => {
           form.reset();
           handleUpdateUserProfile(name, email, password);
           handleEmailVerification();
-          toast.success('Please verify your email before login')
+        //   toast.success('')
+        
         })
         .catch(error => {
           console.error(error)

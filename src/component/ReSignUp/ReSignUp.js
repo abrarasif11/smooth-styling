@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthProvider';
 
 const ReSignUp = () => {
@@ -24,7 +24,7 @@ const ReSignUp = () => {
                 form.reset();
                 handleUpdateUserProfile(name, email, password);
                 handleEmailVerification();
-                toast.success('Please verify your email before login')
+                toast.warning("Please verify your email before login", { autoClose: 800 });
             })
             .catch(error => {
                 console.error(error)

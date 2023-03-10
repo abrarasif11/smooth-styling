@@ -1,4 +1,3 @@
-import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import About from './component/About/About';
@@ -11,6 +10,7 @@ import Main from './component/Layout/Main';
 import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 import GiveReview from './component/GiveReview/GiveReview';
+import PrivateRoute from './component/Route/PrivateRoute/PrivateRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -37,12 +37,12 @@ function App() {
         },
         {
           path : '/service',
-          element : <Categories></Categories>
+          element : <PrivateRoute><Categories></Categories></PrivateRoute>
           
         },
         {
           path : '/reviews',
-          element : <GiveReview></GiveReview>
+          element : <PrivateRoute><GiveReview></GiveReview></PrivateRoute>
         },
         {
           path : '/register',
@@ -59,7 +59,7 @@ function App() {
   return (
     <div className="App">
     <RouterProvider fallbackElement={<Spinner></Spinner>} router={router}></RouterProvider>
-    <Toaster></Toaster>
+    
     </div>
   );
 }

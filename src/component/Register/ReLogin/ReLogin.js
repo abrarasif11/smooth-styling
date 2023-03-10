@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const ReLogin = () => {
@@ -24,9 +24,10 @@ const ReLogin = () => {
                 setError('');
                 if (user.emailVerified) {
                     navigate(from, { replace: true });
+                    toast.success("Login Successfully", { autoClose: 800 });
                 }
                 else {
-                    toast.error('Your email is not valid, Please verify email first')
+                    toast.error("Your email is not valid, Please verify email first", { autoClose: 800 });
                 }
             })
             .catch(error => {
