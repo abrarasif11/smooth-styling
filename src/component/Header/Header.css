@@ -1,5 +1,5 @@
-#navbar{
-    background: transparent;
+/* navbar{
+    background-color: rgba(0,0,0,0);
     backdrop-filter: blur(10px);
-    position: sticky;
-}
+    position: fixed;
+} */

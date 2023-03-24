@@ -7,7 +7,7 @@ const Testimonial = () => {
     return (
         <div>
         <div>
-         <h3 className='mx-auto text-black text-4xl font-semibold mt-10 font-poppins'>See Our Customer Reviews</h3>
+         <h3 className='mx-auto text-black text-4xl font-semibold mt-10 font-poppins'>See Our Customers Feedback</h3>
       </div>
       {
          testimonials.map(testimonial => <Testimonials

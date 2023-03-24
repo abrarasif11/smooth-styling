@@ -57,7 +57,7 @@ function App() {
     }
   ])
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden">
     <RouterProvider fallbackElement={<Spinner></Spinner>} router={router}></RouterProvider>
     
     </div>

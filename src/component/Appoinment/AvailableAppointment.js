@@ -12,6 +12,7 @@ const AvailableAppointment = ({ selectedDate }) => {
             .then(res => res.json())
             .then(data => setServiceOptions(data))
     }, [])
+   
     return (
         <section className='mt-16'>
             <p className='text-center font-poppins font-bold'>Available Appointments on {format(selectedDate, 'PP')}
