@@ -10,11 +10,12 @@ const AppointmentOptions = ({ serviceOption, setService }) => {
                 <p>{slots.length} {slots.length > 1 ? 'spaces' : 'space'} available</p>
                 <div className="card-actions justify-center">
                     <label
-                htmlFor="booking-modal"
-                onClick={() => setService(serviceOption)} 
-                className="btn bg-black text-yellow-400"
-                 >Book Appointment
-                </label>
+                        disabled={slots.length === 0}
+                        htmlFor="booking-modal"
+                        onClick={() => setService(serviceOption)}
+                        className="btn bg-black text-yellow-400"
+                    >Book Appointment
+                    </label>
                 </div>
             </div>
         </div>

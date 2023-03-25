@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthProvider';
-const BookingModal = ({ service, selectedDate }) => {
+const BookingModal = ({ service, setService, selectedDate }) => {
     const { name, slots } = service;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext)
@@ -28,13 +28,12 @@ const BookingModal = ({ service, selectedDate }) => {
                 .then((data) => {
                     console.log(data);
                     if (data.acknowledged) {
-                        // toast.success("Order Confirm Successfully");
+                        setService(null);
                         toast.success("Your Appointment Confirm Successfully", { autoClose: 800 });
                     }
                 })
                 .catch((err) => console.log(err));
         } else {
-            // toast.error("Please login first to confirm order");
             toast.error("Please login first to confirm appointment", { autoClose: 800 });
         }
     }
