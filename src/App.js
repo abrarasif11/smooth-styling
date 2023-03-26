@@ -24,7 +24,7 @@ function App() {
         },
         {
           path : '/appointment',
-          element : <Appoinment></Appoinment>
+          element : <PrivateRoute><Appoinment></Appoinment></PrivateRoute>
         },
         {
           path : '/testimonial',

@@ -2,8 +2,8 @@ import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthProvider';
-const BookingModal = ({ service, setService, selectedDate }) => {
-    const { name, slots } = service;
+const BookingModal = ({ service, setService, selectedDate, refetch }) => {
+    const { name: serviceName, slots } = service;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext)
     const handleBooking = event => {
@@ -14,28 +14,35 @@ const BookingModal = ({ service, setService, selectedDate }) => {
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
-        const formValue = { date, slot, name, email, phone };
-        console.log(formValue);
-        if (user?.uid) {
-            fetch("http://localhost:5000/appointment", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(formValue),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                    if (data.acknowledged) {
-                        setService(null);
-                        toast.success("Your Appointment Confirm Successfully", { autoClose: 800 });
-                    }
-                })
-                .catch((err) => console.log(err));
-        } else {
-            toast.error("Please login first to confirm appointment", { autoClose: 800 });
+        const booking = {
+            appointmentDate: date,
+            service: serviceName,
+            customer: name,
+            slot,
+            email,
+            phone,
         }
+        //    booking /
+        fetch('http://localhost:5000/appointment', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setService(null);
+                    toast.success("Your Appointment Confirm Successfully", { autoClose: 800 });
+                    refetch();
+                }
+                else {
+                    toast.error(data.message, { autoClose: 800 });
+                }
+            })
+
     }
     return (
         <div>
@@ -43,7 +50,7 @@ const BookingModal = ({ service, setService, selectedDate }) => {
             <div className="modal">
                 <div className="modal-box font-poppins relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">{name}</h3>
+                    <h3 className="text-lg font-bold">{serviceName}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-6 mt-6'>
                         <input type="text" name='date' disabled value={date} className="input w-full input-bordered" />
                         <select name='slot' className="select select-bordered w-full">
