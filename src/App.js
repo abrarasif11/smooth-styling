@@ -11,6 +11,8 @@ import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 import GiveReview from './component/GiveReview/GiveReview';
 import PrivateRoute from './component/Route/PrivateRoute/PrivateRoute';
+import Dashboard from './component/Dashboard/Dashboard';
+import DashboardLayout from './component/Layout/DashboardLayout/DashboardLayout';
 
 function App() {
   const router = createBrowserRouter([
@@ -53,7 +55,16 @@ function App() {
           element : <ReLogin></ReLogin>
         },
       ]
-      
+    },
+    {
+      path : '/dashboard',
+      element : <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+      children : [
+        {
+          path : '/dashboard',
+          element : <Dashboard></Dashboard>
+        }
+      ]
     }
   ])
   return (
