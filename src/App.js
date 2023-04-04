@@ -13,6 +13,7 @@ import GiveReview from './component/GiveReview/GiveReview';
 import PrivateRoute from './component/Route/PrivateRoute/PrivateRoute';
 import Dashboard from './component/Dashboard/Dashboard';
 import DashboardLayout from './component/Layout/DashboardLayout/DashboardLayout';
+import MyAppointment from './component/Dashboard/MyAppointment/MyAppointment';
 
 function App() {
   const router = createBrowserRouter([
@@ -62,7 +63,7 @@ function App() {
       children : [
         {
           path : '/dashboard',
-          element : <Dashboard></Dashboard>
+          element : <MyAppointment></MyAppointment>
         }
       ]
     }

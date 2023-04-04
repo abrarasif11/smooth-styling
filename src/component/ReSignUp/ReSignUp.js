@@ -23,6 +23,7 @@ const ReSignUp = () => {
                 setError('');
                 form.reset();
                 handleUpdateUserProfile(name, email, password);
+
                 handleEmailVerification();
                 toast.warning("Please verify your email before login", { autoClose: 800 });
             })
@@ -40,6 +41,7 @@ const ReSignUp = () => {
         updateUserProfile(profile)
             .then(() => { })
             .catch(error => console.error(error));
+            saveUser();
     }
 
     const handleEmailVerification = () => {
@@ -47,6 +49,16 @@ const ReSignUp = () => {
             .then(() => { })
             .catch(error => console.error(error));
     }
+       const saveUser = (name , email) =>{
+        const user = {name, email};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+       }
     return (
         <div className="relative">
             <img

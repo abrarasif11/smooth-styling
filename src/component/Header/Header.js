@@ -103,6 +103,11 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      <div className="navbar-end text-yellow-400 font-poppins hidden lg:block md:navbar-end md:block">
+        <a href="tel:+8801716240857">
+          <button className="navBtn uppercase font-bold">Make a call</button>
+        </a>
+      </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
