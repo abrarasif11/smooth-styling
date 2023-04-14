@@ -16,6 +16,16 @@ const ReSignUp = () => {
         const password = form.password.value;
         console.log(name, photoURL, email, password);
 
+        const user = { name, email };
+        console.log(user);
+        fetch('http://localhost:5000/usersList', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+
         createUser(email, password)
             .then(result => {
                 const user = result.user;
@@ -41,7 +51,7 @@ const ReSignUp = () => {
         updateUserProfile(profile)
             .then(() => { })
             .catch(error => console.error(error));
-            saveUser();
+        // saveUser();
     }
 
     const handleEmailVerification = () => {
@@ -49,16 +59,17 @@ const ReSignUp = () => {
             .then(() => { })
             .catch(error => console.error(error));
     }
-       const saveUser = (name , email) =>{
-        const user = {name, email};
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-       }
+    // const saveUser = (name, email) => {
+    //     const user = { name, email };
+    //     console.log(user);
+    //     fetch('http://localhost:5000/usersList', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(user)
+    //     })
+    // }
     return (
         <div className="relative">
             <img

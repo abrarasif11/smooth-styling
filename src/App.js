@@ -14,6 +14,7 @@ import PrivateRoute from './component/Route/PrivateRoute/PrivateRoute';
 import Dashboard from './component/Dashboard/Dashboard';
 import DashboardLayout from './component/Layout/DashboardLayout/DashboardLayout';
 import MyAppointment from './component/Dashboard/MyAppointment/MyAppointment';
+import MyUsers from './component/Layout/DashboardLayout/MyUsers';
 
 function App() {
   const router = createBrowserRouter([
@@ -64,7 +65,11 @@ function App() {
         {
           path : '/dashboard',
           element : <MyAppointment></MyAppointment>
-        }
+        },
+        {
+          path : '/dashboard/allUser',
+          element : <MyUsers></MyUsers>
+        },
       ]
     }
   ])

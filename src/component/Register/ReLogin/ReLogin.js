@@ -6,45 +6,61 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const ReLogin = () => {
   const [error, setError] = useState('');
-    const { signIn, googleSignIn } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
-    const provider = new GoogleAuthProvider();
-    const handleSubmit = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                form.reset();
-                setError('');
-                if (user.emailVerified) {
-                    navigate(from, { replace: true });
-                    toast.success("Login Successfully", { autoClose: 800 });
-                }
-                else {
-                    toast.error("Your email is not valid, Please verify email first", { autoClose: 800 });
-                }
-            })
-            .catch(error => {
-                console.error(error)
-                setError(error.message);
-            });
-    }
+  const { signIn, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  navigate("/");
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  const provider = new GoogleAuthProvider();
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signIn(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError('');
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+          toast.success("Login Successfully", { autoClose: 800 });
+        }
+        else {
+          toast.error("Your email is not valid, Please verify email first", { autoClose: 800 });
+        }
+      })
+      .catch(error => {
+        console.error(error)
+        setError(error.message);
+      });
+  }
   const handleGoogleSignIn = () => {
     googleSignIn(provider)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
+      .then((userCredential) => {
+        const displayUser = userCredential.user;
+        console.log(displayUser);
+        const name =  displayUser.displayName 
+        const email =  displayUser.email 
+        const user = { name, email };
+        console.log(user);
+        fetch('http://localhost:5000/usersList', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
         })
-        .catch((error) => {
-            console.error(error);
-        });
-};
+
+      })
+
+     
+
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="relative">
       <img
@@ -57,21 +73,21 @@ const ReLogin = () => {
           <div className="flex flex-col items-center justify-between xl:flex-row">
             <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
               <h2 className="max-w-lg mb-6 font-poppins text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-              Hi There !  
+                Hi There !
                 <br />
-                 Welcome To 
-                 <br />
-                 <span className='text-yellow-400'>  Smooth Styling{' '}</span>
-                
+                Welcome To
+                <br />
+                <span className='text-yellow-400'>  Smooth Styling{' '}</span>
+
               </h2>
-             
-              
+
+
             </div>
             <div className="w-full font-poppins max-w-xl xl:px-8 xl:w-5/12">
               <div className="bg-gray-700 text-white rounded shadow-2xl p-7 sm:p-10">
 
                 <form onSubmit={handleSubmit}>
-                  
+
                   <h3 className='text-4xl font-semibold mb-5'>Log In Here</h3>
                   <div className="mb-1  sm:mb-2">
                     <label

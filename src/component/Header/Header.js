@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../Context/AuthProvider";
+import { BiPhoneCall } from 'react-icons/bi';
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -103,9 +104,14 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <div className="navbar-end text-yellow-400 font-poppins hidden lg:block md:navbar-end md:block">
+      <div className="navbar-end hidden lg:block md:navbar-end md:block">
+        <a href="tel:+8801716240857" className='text-yellow-400  text-xl font-poppins'>
+          <button className="navBtn uppercase bg-yellow-400 text-xl p-2 mr-2 rounded-full font-poppins text-white  font-bold hover:scale-105 duration-700"><BiPhoneCall></BiPhoneCall></button>
+         Make a Call</a>
+      </div>
+      <div className="block lg:hidden md:hidden">
         <a href="tel:+8801716240857">
-          <button className="navBtn uppercase font-bold">Make a call</button>
+          <button className="flex items-center ml-14 justify-center text-2xl p-2 rounded-full bg-yellow-400 text-white"><BiPhoneCall></BiPhoneCall></button>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
