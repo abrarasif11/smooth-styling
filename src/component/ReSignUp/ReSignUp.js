@@ -88,8 +88,6 @@ const ReSignUp = () => {
                                 For New Account {' '}
 
                             </h2>
-
-
                         </div>
                         <div className="w-full font-poppins max-w-xl xl:px-8 xl:w-5/12">
                             <div className="bg-gray-700 text-white rounded shadow-2xl p-7 sm:p-10">

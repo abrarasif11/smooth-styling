@@ -19,11 +19,11 @@ const MyAppointment = () => {
     })
     return (
         <div className='font-poppins'>
-            <h1 className='text-4xl font-bold mt-10 mb-7 text-red-700 w-fit px-2 py-2 ml-4 '>My Appointments</h1>
+            <h1 className='text-4xl font-bold mt-10 mb-7 text-black w-fit px-2 py-2 ml-4 '>My Appointments</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
-                        <tr>
+                        <tr className='text-black'>
                             <th></th>
                             <th>customer</th>
                             <th>Email</th>
@@ -38,12 +38,12 @@ const MyAppointment = () => {
                             appointment.map((item, i) =>
                                 <tr key={item._id}>
                                     <th>{i + 1}</th>
-                                    <td className='text-red-700'>{item.customer}</td>
-                                    <th className='text-red-700'>{item.email}</th>
-                                    <td className='text-red-700'>{item.service}</td>
-                                    <td className='text-red-700'>{item.appointmentDate}</td>
-                                    <td className='text-red-700'>{item.slot}</td>
-                                    <td className='text-red-700'>{item.phone}</td>
+                                    <td className='font-bold text-black'>{item.customer}</td>
+                                    <th className=' text-black mt-2 mb-5'>{item.email}</th>
+                                    <td className='text-black'>{item.service}</td>
+                                    <td className='text-black'>{item.appointmentDate}</td>
+                                    <td className='text-black'>{item.slot}</td>
+                                    <td className='text-black'>{item.phone}</td>
                                 </tr>
 
                             )

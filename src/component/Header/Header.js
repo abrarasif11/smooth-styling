@@ -3,8 +3,11 @@ import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../Context/AuthProvider";
 import { BiPhoneCall } from 'react-icons/bi';
+import { FaUserCircle } from 'react-icons/fa';
+import useAdmin from '../../useHooks/AdminRoute';
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email)
   const navigate = useNavigate();
   const handleLogOut = () => {
     logOut(navigate);
@@ -27,16 +30,15 @@ const Header = () => {
       <li className="font-medium font-poppins text-yellow-400">
         <Link to="/about">About</Link>
       </li>
-      <li className="font-medium font-poppins text-yellow-400">
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
-
-      {/* {user?.uid && (
-          <li className="font-medium font-poppins hover:text-[#E81C2E]">
-            <Link to="/dashboard1">Dashboard</Link>
-          </li>
-        )} */}
-
+      {isAdmin && (
+        <li className="font-medium font-poppins text-yellow-400"
+        >
+          <Link
+            to="/dashboard" >
+            Dashboard
+          </Link>
+        </li>
+      )}
       {user?.uid ? (
         <li
           className="font-medium font-poppins text-yellow-400"
@@ -55,12 +57,19 @@ const Header = () => {
           data-tip={user?.displayName}
         >
           <label tabIndex={0}>
-            <img
-              className="w-[36px] h-[36px] rounded-full mr-5"
-              src={user?.photoURL}
-              alt=""
-            />
-          </label>
+                        {
+                            
+                            user?.photoURL ?
+                                <img
+                                    className="w-[36px] h-[36px] rounded-full mr-5"
+                                    src={user?.photoURL}
+                                    alt=""
+                                />
+                                :
+                                <FaUserCircle className=" w-[30px] mt-1 mr-2 h-[40px]"></FaUserCircle>
+                        }
+                        
+                    </label>
 
         </div>
       )}
@@ -107,7 +116,7 @@ const Header = () => {
       <div className="navbar-end hidden lg:block md:navbar-end md:block">
         <a href="tel:+8801716240857" className='text-yellow-400  text-xl font-poppins'>
           <button className="navBtn uppercase bg-yellow-400 text-xl p-2 mr-2 rounded-full font-poppins text-white  font-bold hover:scale-105 duration-700"><BiPhoneCall></BiPhoneCall></button>
-         Make a Call</a>
+          Make a Call</a>
       </div>
       <div className="block lg:hidden md:hidden">
         <a href="tel:+8801716240857">

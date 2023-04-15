@@ -11,6 +11,7 @@ import Spinner from './component/Spinner/Spinner';
 import Testimonial from './component/Testimonial/Testimonial';
 import GiveReview from './component/GiveReview/GiveReview';
 import PrivateRoute from './component/Route/PrivateRoute/PrivateRoute';
+import AdminRoute from './useHooks/AdminRoute';
 import Dashboard from './component/Dashboard/Dashboard';
 import DashboardLayout from './component/Layout/DashboardLayout/DashboardLayout';
 import MyAppointment from './component/Dashboard/MyAppointment/MyAppointment';

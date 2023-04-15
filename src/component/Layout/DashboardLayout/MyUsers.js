@@ -44,11 +44,11 @@ const MyUsers = () => {
     }
     return (
         <div>
-            <h1 className='text-4xl font-poppins font-bold mb-5 mt-10  text-black  w-fit px-2 py-2 ml-4'>My Users</h1>
+            <h1 className='text-4xl font-poppins font-bold mb-5 mt-10  text-black  w-fit px-2 py-2 ml-4'>All Users</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full font-poppins">
                     <thead>
-                        <tr>
+                        <tr className='text-black'>
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
@@ -61,9 +61,9 @@ const MyUsers = () => {
                             users.map((user, i) =>
                                 <tr key={user._id}>
                                     <th>{i + 1}</th>
-                                    <td className='text-black font-poppins'>{user.name}</td>
-                                    <td className='text-black font-poppins'>{user.email}</td>
-                                    <td className='text-black font-poppins'>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='rounded px-2 py-1 text-black  bg-border-black font-poppins bg-yellow-400  btn-xs'>Make Admin</button>}</td>
+                                    <td className='text-black font-semibold  font-poppins'>{user.name}</td>
+                                    <td className='text-black font-semibold font-poppins'>{user.email}</td>
+                                    <td className='text-black font-semibold font-poppins'>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='rounded px-2 py-1 text-black  bg-border-black font-poppins bg-yellow-400  btn-xs'>Make Admin</button>}</td>
                                     <td>{user?.role !== 'admin' && <button onClick={() => handleDeleteUser(user._id)} className='bg-black font-poppins rounded text-white px-2'>Delete</button>}</td>
                                 </tr>
                             )
