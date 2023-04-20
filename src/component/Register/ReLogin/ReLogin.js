@@ -3,8 +3,10 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../../useHooks/useTitle';
 
 const ReLogin = () => {
+  useTitle('Login')
   const [error, setError] = useState('');
   const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();

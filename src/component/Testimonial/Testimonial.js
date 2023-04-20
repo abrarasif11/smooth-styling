@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Testimonials from './Testimonials';
+import useTitle from '../../useHooks/useTitle';
 
 const Testimonial = () => {
+    useTitle('Testimonial')
     const testimonials = useLoaderData()
     return (
         <div>

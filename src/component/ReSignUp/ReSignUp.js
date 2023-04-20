@@ -2,8 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthProvider';
+import useTitle from '../../useHooks/useTitle';
 
 const ReSignUp = () => {
+    useTitle('Register')
     const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext);
     const [error, setError] = useState('');
 
