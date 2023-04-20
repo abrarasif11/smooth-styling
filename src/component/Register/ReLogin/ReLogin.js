@@ -45,7 +45,7 @@ const ReLogin = () => {
         const email =  displayUser.email 
         const user = { name, email };
         console.log(user);
-        fetch('http://localhost:5000/usersList', {
+        fetch('https://smooth-styling-server.vercel.app/usersList', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

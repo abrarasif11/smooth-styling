@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 
 const MyUsers = () => {
-    const url = `http://localhost:5000/usersList`;
+    const url = `https://smooth-styling-server.vercel.app/usersList`;
     const [displayUser, setDisplayUser] = useState();
     const { data: users = [],refetch } = useQuery({
         queryKey: ['users'],
@@ -15,7 +15,7 @@ const MyUsers = () => {
     })
     console.log(users);
     const handleMakeAdmin = _id =>{
-        fetch (`http://localhost:5000/usersList/admin/${_id}`,{
+        fetch (`https://smooth-styling-server.vercel.app/usersList/admin/${_id}`,{
             method:'PUT'
         })
         .then(res => res.json())
@@ -28,7 +28,7 @@ const MyUsers = () => {
         })   
     }
     const handleDeleteUser = _id => {
-        fetch(`http://localhost:5000/usersList/${_id}`, {
+        fetch(`https://smooth-styling-server.vercel.app/usersList/${_id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

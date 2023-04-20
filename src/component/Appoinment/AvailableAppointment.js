@@ -13,7 +13,7 @@ const AvailableAppointment = ({ selectedDate }) => {
     const { data: serviceOptions = [], refetch, isLoading } = useQuery({
         queryKey: ['service', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/service?date=${date}`);
+            const res = await fetch(`https://smooth-styling-server.vercel.app/service?date=${date}`);
             const data = await res.json();
             return data
         }

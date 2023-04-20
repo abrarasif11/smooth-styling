@@ -23,7 +23,7 @@ const BookingModal = ({ service, setService, selectedDate, refetch }) => {
             phone,
         }
         //    booking /
-        fetch('http://localhost:5000/appointment', {
+        fetch('https://smooth-styling-server.vercel.app/appointment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

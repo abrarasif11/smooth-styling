@@ -14,10 +14,6 @@ const Header = () => {
   };
   const menuItems = (
     <React.Fragment>
-
-      <li className="font-medium font-poppins text-yellow-400">
-        <Link to="/">Home</Link>
-      </li>
       <li className="font-medium font-poppins text-yellow-400">
         <Link to="/appointment">Appointment</Link>
       </li>

@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 const MyAppointment = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/appointment?email=${user?.email}`;
+    const url = `https://smooth-styling-server.vercel.app/appointment?email=${user?.email}`;
     const { data: appointment = [] } = useQuery({
         queryKey: ['appointment', user?.email],
         queryFn: async () => {

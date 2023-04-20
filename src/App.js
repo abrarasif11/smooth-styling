@@ -16,6 +16,7 @@ import Dashboard from './component/Dashboard/Dashboard';
 import DashboardLayout from './component/Layout/DashboardLayout/DashboardLayout';
 import MyAppointment from './component/Dashboard/MyAppointment/MyAppointment';
 import MyUsers from './component/Layout/DashboardLayout/MyUsers';
+import ErrorPage from './component/ErrorPage/ErrorPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,7 +34,7 @@ function App() {
         },
         {
           path : '/testimonial',
-          loader :() => fetch('http://localhost:5000/review'),
+          loader :() => fetch('https://smooth-styling-server.vercel.app/review'),
           element : <Testimonial></Testimonial>
         },
         {
@@ -58,6 +59,10 @@ function App() {
           element : <ReLogin></ReLogin>
         },
       ]
+    },
+    {
+      path: '*',
+      element: <ErrorPage></ErrorPage>
     },
     {
       path : '/dashboard',
